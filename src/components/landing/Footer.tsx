@@ -4,7 +4,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="liquid-glass-card-sm px-5 py-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span>
-            <span className="font-bold gradient-text">Delibero</span> — un servizio <span className="font-semibold gradient-text">energizzo</span> by <a href="#" className="text-primary hover:underline">UNVRS Labs</a>
+            <span className="font-bold gradient-text">Delibero</span> — un servizio <a href="https://www.energizzo.it" target="_blank" rel="noopener noreferrer" className="font-semibold gradient-text hover:underline">energizzo</a> by <a href="https://www.unvrslabs.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">UNVRS Labs</a>
           </span>
           <span className="text-white/10">|</span>
           <span>© {new Date().getFullYear()} UNVRS Labs S.r.l.</span>
