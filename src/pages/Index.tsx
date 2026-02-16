@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight } from "lucide-react";
+import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight, Flame } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
@@ -96,27 +96,40 @@ const Index = () => {
                       </div>
 
                       <div className="flex flex-col gap-3 mt-3">
-                        <Link to="/delibere?tariffario=true">
+                        <Link to="/delibere?settore=elettricita">
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-                              <TrendingUp className="w-4 h-4 text-primary" />
+                              <Zap className="w-4 h-4 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-semibold text-foreground">Aggiornamenti Tariffari</p>
-                              <p className="text-xs text-muted-foreground">Variazioni prezzi</p>
+                              <p className="text-sm font-semibold text-foreground">Energia</p>
+                              <p className="text-xs text-muted-foreground">Delibere elettricità</p>
                             </div>
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
                         </Link>
 
-                        <Link to="/delibere">
+                        <Link to="/delibere?settore=gas">
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-                              <FileText className="w-4 h-4 text-primary" />
+                              <Flame className="w-4 h-4 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-semibold text-foreground">Riassunti AI</p>
-                              <p className="text-xs text-muted-foreground">Analisi automatica</p>
+                              <p className="text-sm font-semibold text-foreground">Gas</p>
+                              <p className="text-xs text-muted-foreground">Delibere gas</p>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                          </div>
+                        </Link>
+
+                        <Link to="/delibere?tariffario=true">
+                          <div className="flex items-center gap-3 p-3.5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors group cursor-pointer">
+                            <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+                              <TrendingUp className="w-4 h-4 text-primary" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-primary">Tariffe</p>
+                              <p className="text-xs text-muted-foreground">Aggiornamenti tariffari</p>
                             </div>
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
