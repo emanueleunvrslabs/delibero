@@ -76,7 +76,7 @@ const Index = () => {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative flex justify-center lg:justify-end"
+                  className="relative flex justify-center lg:justify-center"
                 >
                   <div
                     className="liquid-glass-card-lg p-6 md:p-8 overflow-hidden w-full max-w-sm"
