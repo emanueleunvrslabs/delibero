@@ -145,7 +145,7 @@ const Index = () => {
                 </div>
 
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 text-foreground">
-                  Delibero è un servizio di{" "}
+                  Delibero è un servizio offerto da{" "}
                   <span className="gradient-text">Energizzo</span>
                 </h2>
 
