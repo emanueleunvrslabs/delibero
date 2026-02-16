@@ -25,10 +25,10 @@ const Index = () => {
       <div className="fixed inset-0 aurora-bg pointer-events-none" />
       <div className="grain-overlay" />
       
-      <div className="relative z-10">
+        <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         
-        <main>
+        <main className="flex-1">
           {/* Hero - Split Layout */}
           <section className="pt-32 md:pt-40 pb-16 md:pb-24 relative">
             <div className="container mx-auto px-4">

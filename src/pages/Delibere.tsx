@@ -44,10 +44,10 @@ const Delibere = () => {
       <div className="fixed inset-0 aurora-bg pointer-events-none" />
       <div className="grain-overlay" />
       
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         
-        <main className="pt-28 md:pt-36 pb-16">
+        <main className="flex-1 pt-28 md:pt-36 pb-16">
           <div className="container mx-auto px-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
