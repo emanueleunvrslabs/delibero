@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      delibere: {
+        Row: {
+          allegati: Json | null
+          created_at: string
+          data_pubblicazione: string
+          id: string
+          is_aggiornamento_tariffario: boolean
+          is_published: boolean
+          link_originale: string | null
+          numero: string
+          punti_salienti: Json | null
+          riassunto_ai: string | null
+          settori: string[] | null
+          titolo: string
+          updated_at: string
+        }
+        Insert: {
+          allegati?: Json | null
+          created_at?: string
+          data_pubblicazione: string
+          id?: string
+          is_aggiornamento_tariffario?: boolean
+          is_published?: boolean
+          link_originale?: string | null
+          numero: string
+          punti_salienti?: Json | null
+          riassunto_ai?: string | null
+          settori?: string[] | null
+          titolo: string
+          updated_at?: string
+        }
+        Update: {
+          allegati?: Json | null
+          created_at?: string
+          data_pubblicazione?: string
+          id?: string
+          is_aggiornamento_tariffario?: boolean
+          is_published?: boolean
+          link_originale?: string | null
+          numero?: string
+          punti_salienti?: Json | null
+          riassunto_ai?: string | null
+          settori?: string[] | null
+          titolo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
