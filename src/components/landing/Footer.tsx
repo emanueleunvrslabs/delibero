@@ -7,7 +7,7 @@ export const Footer = () => {
             <span className="font-bold gradient-text">Delibero</span> — un servizio <a href="https://www.energizzo.it" target="_blank" rel="noopener noreferrer" className="font-semibold gradient-text hover:underline">energizzo</a> by <a href="https://www.unvrslabs.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">UNVRS Labs</a>
           </span>
           <span className="text-white/10">|</span>
-          <span>© {new Date().getFullYear()} UNVRS Labs S.r.l.</span>
+          <span>© {new Date().getFullYear()} UNVRS Labs Limited</span>
           <span className="text-white/10">|</span>
           <span className="text-muted-foreground/60">Non affiliato ad ARERA</span>
         </div>
