@@ -7,15 +7,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
 const Index = () => {
-  const { data: ultime } = useQuery({
-    queryKey: ["delibere-ultime"],
+  const { data: totalCount } = useQuery({
+    queryKey: ["delibere-count"],
     queryFn: async () => {
-      const { data } = await supabase
+      const { count } = await supabase
         .from("delibere")
-        .select("*")
-        .order("data_pubblicazione", { ascending: false })
-        .limit(6);
-      return data ?? [];
+        .select("*", { count: "exact", head: true });
+      return count ?? 0;
     },
   });
 
@@ -92,7 +90,7 @@ const Index = () => {
                       <p className="text-sm text-muted-foreground mb-1 text-center">Delibero</p>
                       <div className="text-center mb-6">
                         <span className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight">
-                          {ultime?.length || 0}
+                          {totalCount ?? 0}
                         </span>
                         <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
                       </div>
