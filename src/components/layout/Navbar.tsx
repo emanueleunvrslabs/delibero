@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "Funzionalità", href: "#features" },
-  { label: "Come Funziona", href: "#how" },
-  { label: "Prezzi", href: "#pricing" },
-  { label: "Confronto", href: "#compare" },
+  { label: "Home", href: "/" },
+  { label: "Delibere", href: "/delibere" },
+  { label: "Aggiornamenti Tariffari", href: "/delibere?tariffario=true" },
 ];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("#");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,9 +23,9 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (href: string) => {
-    setActiveLink(href);
-    setMobileOpen(false);
+  const isActive = (href: string) => {
+    if (href === "/") return location.pathname === "/";
+    return location.pathname + location.search === href || location.pathname.startsWith(href.split("?")[0]) && href !== "/";
   };
 
   return (
@@ -48,54 +48,41 @@ export const Navbar = () => {
         }}
       >
         {/* Logo */}
-        <a href="#" className="pr-4 pl-2">
+        <Link to="/" className="pr-4 pl-2">
           <span className="text-lg font-bold gradient-text">
-            energizzo
+            Delibero
           </span>
-          <span className="text-sm text-muted-foreground ml-1">by UNVRS</span>
-        </a>
+          <span className="text-sm text-muted-foreground ml-1">by energizzo</span>
+        </Link>
         
         <div className="w-px h-5 bg-white/15 mx-1" />
         
         {navLinks.map((link) => (
-          <motion.a
-            key={link.href}
-            href={link.href}
-            onClick={() => handleLinkClick(link.href)}
-            className={cn(
-              "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full",
-              activeLink === link.href
-                ? "text-primary"
-                : "text-foreground/70 hover:text-foreground"
-            )}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            {activeLink === link.href && (
-              <motion.div
-                layoutId="activeTab"
-                className="absolute inset-0 rounded-full liquid-glass"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 100%)',
-                  border: '1px solid hsl(var(--primary) / 0.25)'
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            <span className="relative z-10">{link.label}</span>
-          </motion.a>
+          <motion.div key={link.href}>
+            <Link
+              to={link.href}
+              className={cn(
+                "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full inline-block",
+                isActive(link.href)
+                  ? "text-primary"
+                  : "text-foreground/70 hover:text-foreground"
+              )}
+            >
+              {isActive(link.href) && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-full liquid-glass"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 100%)',
+                    border: '1px solid hsl(var(--primary) / 0.25)'
+                  }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
+            </Link>
+          </motion.div>
         ))}
-        
-        <div className="w-px h-5 bg-white/15 mx-1" />
-        
-        <motion.a
-          href="#cta"
-          className="px-5 py-2 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-300"
-          whileHover={{ scale: 1.05, boxShadow: '0 8px 24px hsl(var(--primary) / 0.4)' }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Richiedi Demo
-        </motion.a>
       </motion.div>
 
       {/* Mobile Menu Toggle */}
@@ -105,7 +92,7 @@ export const Navbar = () => {
           "liquid-glass-nav"
         )}
       >
-        <span className="gradient-text font-bold text-lg">energizzo</span>
+        <Link to="/" className="gradient-text font-bold text-lg">Delibero</Link>
         <motion.button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-foreground p-2 rounded-full liquid-glass"
@@ -128,33 +115,25 @@ export const Navbar = () => {
           >
             <div className="flex flex-col p-4 gap-1">
               {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => handleLinkClick(link.href)}
+                <motion.div key={link.href}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className={cn(
-                    "px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
-                    activeLink === link.href
-                      ? "text-primary bg-primary/10"
-                      : "text-foreground/70 hover:text-foreground hover:bg-white/5"
-                  )}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    to={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                      isActive(link.href)
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground/70 hover:text-foreground hover:bg-white/5"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <div className="h-px bg-white/10 my-2" />
-              <motion.a
-                href="#cta"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="px-4 py-3 rounded-xl text-base font-semibold text-center text-primary-foreground bg-gradient-to-r from-primary to-accent"
-              >
-                Richiedi Demo
-              </motion.a>
             </div>
           </motion.div>
         )}
