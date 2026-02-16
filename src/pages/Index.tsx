@@ -76,10 +76,10 @@ const Index = () => {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative"
+                  className="relative flex justify-center lg:justify-end"
                 >
                   <div
-                    className="liquid-glass-card-lg p-6 md:p-8 overflow-hidden"
+                    className="liquid-glass-card-lg p-6 md:p-8 overflow-hidden w-full max-w-sm"
                     style={{
                       background: 'linear-gradient(160deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.04) 100%)',
                     }}
@@ -97,28 +97,28 @@ const Index = () => {
                         <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
                       </div>
 
-                      <div className="space-y-3">
+                      <div className="space-y-2.5">
                         <Link to="/delibere?tariffario=true">
-                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
-                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
-                              <TrendingUp className="w-5 h-5 text-primary" />
+                          <div className="flex items-center gap-3 p-3 rounded-xl liquid-glass hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+                              <TrendingUp className="w-4 h-4 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-semibold text-foreground">Aggiornamenti Tariffari</p>
-                              <p className="text-xs text-muted-foreground">Variazioni prezzi energia e gas</p>
+                              <p className="text-xs text-muted-foreground">Variazioni prezzi</p>
                             </div>
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
                         </Link>
 
                         <Link to="/delibere">
-                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
-                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
-                              <FileText className="w-5 h-5 text-primary" />
+                          <div className="flex items-center gap-3 p-3 rounded-xl liquid-glass hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+                              <FileText className="w-4 h-4 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-semibold text-foreground">Riassunti AI</p>
-                              <p className="text-xs text-muted-foreground">Analisi intelligente automatica</p>
+                              <p className="text-xs text-muted-foreground">Analisi automatica</p>
                             </div>
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
