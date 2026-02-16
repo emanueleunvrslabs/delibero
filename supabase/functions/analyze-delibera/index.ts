@@ -32,10 +32,11 @@ Deno.serve(async (req) => {
 
 1. "numero": il numero della delibera (es. "131/2025/R/com")
 2. "titolo": titolo breve e descrittivo (max 200 caratteri)
-3. "riassunto": riassunto chiaro di 3-5 frasi per operatori del settore energia
-4. "punti_salienti": array di oggetti {"punto": "..."} con i 3-6 punti più importanti
-5. "settori": array con "elettricita" e/o "gas" in base ai settori coinvolti
-6. "is_aggiornamento_tariffario": true se riguarda aggiornamenti di prezzi/tariffe/condizioni economiche
+3. "data_pubblicazione": data di pubblicazione in formato YYYY-MM-DD (cercala nel testo, es. "09 febbraio 2026" → "2026-02-09")
+4. "riassunto": riassunto chiaro di 3-5 frasi per operatori del settore energia
+5. "punti_salienti": array di oggetti {"punto": "..."} con i 3-6 punti più importanti
+6. "settori": array con "elettricita" e/o "gas" in base ai settori coinvolti
+7. "is_aggiornamento_tariffario": true se riguarda aggiornamenti di prezzi/tariffe/condizioni economiche
 
 Titolo dalla pagina: ${title || 'non disponibile'}
 
