@@ -76,54 +76,51 @@ const Index = () => {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex justify-center lg:justify-end"
+                  className="relative"
                 >
                   <div
-                    className="w-[280px] md:w-[320px] rounded-[2rem] p-5 md:p-6 overflow-hidden relative"
+                    className="liquid-glass-card-lg p-6 md:p-8 overflow-hidden"
                     style={{
-                      background: 'linear-gradient(160deg, hsl(215 30% 18% / 0.95) 0%, hsl(215 30% 14% / 0.98) 100%)',
-                      border: '1px solid hsl(0 0% 100% / 0.1)',
-                      boxShadow: '0 20px 60px hsl(0 0% 0% / 0.4), 0 0 0 1px hsl(0 0% 100% / 0.05) inset',
+                      background: 'linear-gradient(160deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.04) 100%)',
                     }}
                   >
-                    {/* Subtle top glow */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-20 pointer-events-none"
-                      style={{ background: 'radial-gradient(ellipse, hsl(var(--primary) / 0.15) 0%, transparent 70%)' }}
+                    <div className="absolute inset-0 opacity-40 pointer-events-none"
+                      style={{ background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.2) 0%, transparent 60%)' }}
                     />
 
                     <div className="relative z-10">
-                      <p className="text-xs text-muted-foreground text-center mb-0.5">Delibero</p>
-                      <div className="text-center mb-5">
-                        <span className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
+                      <p className="text-sm text-muted-foreground mb-1 text-center">Delibero</p>
+                      <div className="text-center mb-6">
+                        <span className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight">
                           {ultime?.length || 0}
                         </span>
-                        <p className="text-xs text-muted-foreground mt-0.5">Delibere analizzate</p>
+                        <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
                       </div>
 
-                      <div className="space-y-2.5">
+                      <div className="space-y-3">
                         <Link to="/delibere?tariffario=true">
-                          <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary/70 transition-colors group cursor-pointer">
-                            <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-                              <TrendingUp className="w-4 h-4 text-primary" />
+                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                              <TrendingUp className="w-5 h-5 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-semibold text-foreground">Aggiornamenti Tariffari</p>
-                              <p className="text-[10px] text-muted-foreground leading-tight">- 25% sui tempi di analisi</p>
+                              <p className="text-sm font-semibold text-foreground">Aggiornamenti Tariffari</p>
+                              <p className="text-xs text-muted-foreground">Variazioni prezzi energia e gas</p>
                             </div>
-                            <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
                         </Link>
 
                         <Link to="/delibere">
-                          <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary/70 transition-colors group cursor-pointer">
-                            <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-                              <FileText className="w-4 h-4 text-primary" />
+                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                              <FileText className="w-5 h-5 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-semibold text-foreground">Riassunti AI</p>
-                              <p className="text-[10px] text-muted-foreground leading-tight">Zero complessità, 100% chiarezza</p>
+                              <p className="text-sm font-semibold text-foreground">Riassunti AI</p>
+                              <p className="text-xs text-muted-foreground">Analisi intelligente automatica</p>
                             </div>
-                            <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                           </div>
                         </Link>
                       </div>
