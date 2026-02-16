@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.process-delibera]
 verify_jwt = false
+
+[functions.sync-delibere]
+verify_jwt = false
