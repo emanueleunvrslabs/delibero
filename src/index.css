@@ -7,7 +7,7 @@
 @layer base {
   :root {
     /* Hero-inspired Dark Blue Palette */
-    --background: 215 35% 12%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
 
     --card: 215 30% 15%;
@@ -70,7 +70,7 @@
 
   .dark {
     /* Same as root - already dark theme */
-    --background: 215 35% 8%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
     --card: 215 30% 12%;
     --card-foreground: 0 0% 98%;
@@ -258,7 +258,7 @@
       radial-gradient(ellipse at 50% 50%, hsl(158 64% 42% / 0.08) 0%, transparent 50%),
       radial-gradient(ellipse at 80% 70%, hsl(180 50% 40% / 0.12) 0%, transparent 45%),
       radial-gradient(ellipse at 20% 80%, hsl(170 40% 45% / 0.1) 0%, transparent 50%),
-      linear-gradient(180deg, hsl(215 35% 18%) 0%, hsl(215 35% 12%) 50%, hsl(215 35% 8%) 100%);
+      linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 3%) 50%, hsl(0 0% 0%) 100%);
   }
 
   /* Animated gradient border */
