@@ -128,6 +128,45 @@ const Index = () => {
               </div>
             </div>
           </section>
+
+          {/* Energizzo CTA Section */}
+          <section className="py-16 md:py-24 relative">
+            <div className="container mx-auto px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="liquid-glass-card p-8 md:p-12 max-w-3xl mx-auto text-center"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary font-medium mb-6">
+                  <Zap className="w-3.5 h-3.5" />
+                  Powered by Energizzo
+                </div>
+
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 text-foreground">
+                  Delibero è un servizio di{" "}
+                  <span className="gradient-text">Energizzo</span>
+                </h2>
+
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+                  I clienti Energizzo hanno il monitoraggio delle delibere ARERA già integrato nel software. 
+                  Analisi AI, notifiche e aggiornamenti tariffari — tutto in un'unica piattaforma.
+                </p>
+
+                <motion.a
+                  href="https://www.energizzo.it"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-premium inline-flex items-center gap-2"
+                >
+                  Scopri Energizzo <ArrowRight className="w-5 h-5" />
+                </motion.a>
+              </motion.div>
+            </div>
+          </section>
         </main>
         
         <Footer />
