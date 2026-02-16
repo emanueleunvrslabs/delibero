@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Zap, Flame, TrendingUp } from "lucide-react";
+import { Calendar, ExternalLink, Zap, Flame, TrendingUp, Share2, Paperclip } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 interface Delibera {
   id: string;
@@ -10,6 +11,7 @@ interface Delibera {
   riassunto_ai: string | null;
   settori: string[];
   is_aggiornamento_tariffario: boolean;
+  allegati: { nome: string; url: string; tipo?: string }[] | null;
 }
 
 interface DeliberaCardProps {
@@ -23,6 +25,22 @@ const settoreConfig: Record<string, { icon: React.ReactNode; label: string; colo
 };
 
 export const DeliberaCard = ({ delibera, index = 0 }: DeliberaCardProps) => {
+  const allegati = Array.isArray(delibera.allegati) ? delibera.allegati : [];
+
+  const handleShare = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${window.location.origin}/delibere/${delibera.id}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: delibera.titolo, url });
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copiato negli appunti");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -77,15 +95,31 @@ export const DeliberaCard = ({ delibera, index = 0 }: DeliberaCardProps) => {
           )}
 
           <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Calendar className="w-3 h-3" />
-              {new Date(delibera.data_pubblicazione).toLocaleDateString("it-IT", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </span>
-            <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Calendar className="w-3 h-3" />
+                {new Date(delibera.data_pubblicazione).toLocaleDateString("it-IT", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+              {allegati.length > 0 && (
+                <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                  <Paperclip className="w-3 h-3" />
+                  {allegati.length}
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleShare}
+                className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-muted-foreground hover:text-primary"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+              </button>
+              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+            </div>
           </div>
         </div>
       </Link>

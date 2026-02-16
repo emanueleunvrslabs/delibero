@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Zap, Flame, TrendingUp, FileText, ArrowLeft } from "lucide-react";
+import { Calendar, ExternalLink, Zap, Flame, TrendingUp, FileText, ArrowLeft, Share2 } from "lucide-react";
+import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
 interface Delibera {
@@ -23,6 +24,18 @@ const settoreConfig: Record<string, { icon: React.ReactNode; label: string; colo
 export const DeliberaContent = ({ delibera }: { delibera: Delibera }) => {
   const punti = Array.isArray(delibera.punti_salienti) ? delibera.punti_salienti : [];
   const allegati = Array.isArray(delibera.allegati) ? delibera.allegati : [];
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: delibera.titolo, url });
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copiato negli appunti");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -94,6 +107,13 @@ export const DeliberaContent = ({ delibera }: { delibera: Delibera }) => {
               Vedi su ARERA
             </a>
           )}
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Share2 className="w-4 h-4" />
+            Condividi
+          </button>
         </div>
       </motion.div>
 
