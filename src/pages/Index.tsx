@@ -5,23 +5,8 @@ import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight } fr
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import { DeliberaCard } from "@/components/delibere/DeliberaCard";
-import { TariffHighlight } from "@/components/delibere/TariffHighlight";
 
 const Index = () => {
-  const { data: tariffari } = useQuery({
-    queryKey: ["delibere-tariffari"],
-    queryFn: async () => {
-      const { data } = await supabase
-        .from("delibere")
-        .select("*")
-        .eq("is_aggiornamento_tariffario", true)
-        .order("data_pubblicazione", { ascending: false })
-        .limit(3);
-      return data ?? [];
-    },
-  });
-
   const { data: ultime } = useQuery({
     queryKey: ["delibere-ultime"],
     queryFn: async () => {
@@ -73,7 +58,6 @@ const Index = () => {
                     </motion.div>
                   </div>
 
-                  {/* Feature pills */}
                   <div className="flex gap-3 flex-wrap">
                     {[
                       { icon: <Brain className="w-3.5 h-3.5" />, label: "Analisi AI" },
@@ -100,7 +84,6 @@ const Index = () => {
                       background: 'linear-gradient(160deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.04) 100%)',
                     }}
                   >
-                    {/* Top glow */}
                     <div className="absolute inset-0 opacity-40 pointer-events-none"
                       style={{ background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.2) 0%, transparent 60%)' }}
                     />
@@ -147,58 +130,6 @@ const Index = () => {
               </div>
             </div>
           </section>
-
-          {/* Aggiornamenti Tariffari */}
-          {tariffari && tariffari.length > 0 && (
-            <section className="py-12 md:py-20">
-              <div className="container mx-auto px-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="flex items-center justify-between mb-8"
-                >
-                  <h2 className="text-xl md:text-3xl font-extrabold text-foreground">
-                    Aggiornamenti Tariffari
-                  </h2>
-                  <Link to="/delibere?tariffario=true" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-                    Vedi tutti <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </motion.div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                  {tariffari.map((d: any, i: number) => (
-                    <TariffHighlight key={d.id} delibera={d} index={i} />
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
-
-          {/* Ultime Delibere */}
-          {ultime && ultime.length > 0 && (
-            <section className="py-12 md:py-20">
-              <div className="container mx-auto px-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="flex items-center justify-between mb-8"
-                >
-                  <h2 className="text-xl md:text-3xl font-extrabold text-foreground">
-                    Ultime Delibere
-                  </h2>
-                  <Link to="/delibere" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-                    Vedi tutte <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </motion.div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                  {ultime.map((d: any, i: number) => (
-                    <DeliberaCard key={d.id} delibera={d} index={i} />
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
         </main>
         
         <Footer />
