@@ -67,7 +67,7 @@ export const DeliberaFilters = ({
           }`}
         >
           <TrendingUp className="w-3 h-3" />
-          Solo tariffari
+          Tariffe
         </button>
       </div>
     </motion.div>
