@@ -75,7 +75,7 @@ Deno.serve(async (req) => {
   try {
     const body = req.method === 'POST' ? await req.json().catch(() => ({})) : {};
     const anno = body.anno || new Date().getFullYear();
-    const settori = body.settori || '4,2'; // 4=elettricità, 2=gas
+    const settori = body.settori || '4'; // 4=elettricità
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
