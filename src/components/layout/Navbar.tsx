@@ -91,7 +91,10 @@ export const Navbar = () => {
           "liquid-glass-nav"
         )}
       >
-        <Link to="/" className="gradient-text font-bold text-lg">Delibero</Link>
+        <Link to="/" className="flex items-baseline gap-1">
+          <span className="gradient-text font-bold text-lg">Delibero</span>
+          <span className="text-sm text-muted-foreground">by energizzo</span>
+        </Link>
         <motion.button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-foreground p-2 rounded-full liquid-glass"
