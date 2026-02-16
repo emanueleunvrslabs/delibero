@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Delibere", href: "/delibere" },
-  { label: "Aggiornamenti Tariffari", href: "/delibere?tariffario=true" },
 ];
 
 export const Navbar = () => {
