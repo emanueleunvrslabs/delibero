@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Zap, Flame, TrendingUp, FileText, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, ExternalLink, Zap, Flame, TrendingUp, FileText, ArrowLeft, Share2, Download } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
@@ -165,7 +165,12 @@ export const DeliberaContent = ({ delibera }: { delibera: Delibera }) => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="liquid-glass-card p-6 md:p-8"
         >
-          <h2 className="text-base font-bold text-foreground mb-4">Allegati</h2>
+          <h2 className="text-base font-bold text-foreground mb-4 flex items-center gap-2">
+            <span className="w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center">
+              <Download className="w-3 h-3 text-primary" />
+            </span>
+            Allegati e Documenti
+          </h2>
           <div className="space-y-2">
             {allegati.map((a, i) => (
               <a
@@ -173,11 +178,17 @@ export const DeliberaContent = ({ delibera }: { delibera: Delibera }) => {
                 href={a.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                download
+                className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group"
               >
-                <FileText className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-sm text-foreground">{a.nome}</span>
-                <ExternalLink className="w-3 h-3 text-muted-foreground ml-auto" />
+                <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">{a.nome}</p>
+                  <p className="text-xs text-muted-foreground">{a.tipo || 'PDF'}</p>
+                </div>
+                <Download className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </a>
             ))}
           </div>
