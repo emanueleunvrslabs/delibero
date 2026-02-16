@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Shield, Brain } from "lucide-react";
+import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
@@ -44,57 +44,107 @@ const Index = () => {
         <Navbar />
         
         <main>
-          {/* Hero */}
+          {/* Hero - Split Layout */}
           <section className="pt-32 md:pt-40 pb-16 md:pb-24 relative">
-            <div className="container mx-auto px-4 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass text-xs font-medium text-muted-foreground mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  Monitoraggio Delibere ARERA
-                </div>
+            <div className="container mx-auto px-4">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Left - Text */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-6 text-left leading-[1.05]">
+                    LE DELIBERE CHE
+                    <br />
+                    <span className="gradient-text">TI SERVONO</span>
+                  </h1>
 
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
-                  <span className="gradient-text">Delibere ARERA</span>
-                  <br />
-                  <span className="text-foreground">analizzate con AI</span>
-                </h1>
+                  <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed text-left">
+                    Monitoriamo le delibere ARERA e le analizziamo con intelligenza artificiale. 
+                    Riassunti, punti salienti e aggiornamenti tariffari per operatori energia, in pochi secondi.
+                  </p>
 
-                <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
-                  Riassunti automatici, punti salienti e aggiornamenti tariffari. 
-                  Tutto ciò che serve agli operatori energia in un unico posto.
-                </p>
-
-                <div className="flex gap-3 justify-center flex-wrap">
-                  <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.98 }}>
-                    <Link to="/delibere" className="btn-premium inline-flex items-center gap-2">
-                      Esplora Delibere <ArrowRight className="w-5 h-5" />
-                    </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Feature pills */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex gap-4 justify-center flex-wrap mt-12"
-              >
-                {[
-                  { icon: <Brain className="w-4 h-4" />, label: "Riassunti AI" },
-                  { icon: <Zap className="w-4 h-4" />, label: "Aggiornamenti Tariffari" },
-                  { icon: <Shield className="w-4 h-4" />, label: "Dati Certificati ARERA" },
-                ].map((f) => (
-                  <div key={f.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass text-xs text-muted-foreground">
-                    <span className="text-primary">{f.icon}</span>
-                    {f.label}
+                  <div className="flex gap-3 flex-wrap mb-8">
+                    <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.98 }}>
+                      <Link to="/delibere" className="btn-premium inline-flex items-center gap-2">
+                        Esplora Delibere <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </motion.div>
                   </div>
-                ))}
-              </motion.div>
+
+                  {/* Feature pills */}
+                  <div className="flex gap-3 flex-wrap">
+                    {[
+                      { icon: <Brain className="w-3.5 h-3.5" />, label: "Analisi AI" },
+                      { icon: <Shield className="w-3.5 h-3.5" />, label: "ARERA Compliant" },
+                    ].map((f) => (
+                      <div key={f.label} className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass text-xs text-muted-foreground">
+                        <span className="text-primary">{f.icon}</span>
+                        {f.label}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Right - Glass Stats Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative"
+                >
+                  <div
+                    className="liquid-glass-card-lg p-6 md:p-8 overflow-hidden"
+                    style={{
+                      background: 'linear-gradient(160deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.04) 100%)',
+                    }}
+                  >
+                    {/* Top glow */}
+                    <div className="absolute inset-0 opacity-40 pointer-events-none"
+                      style={{ background: 'radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.2) 0%, transparent 60%)' }}
+                    />
+
+                    <div className="relative z-10">
+                      <p className="text-sm text-muted-foreground mb-1 text-center">Delibero</p>
+                      <div className="text-center mb-6">
+                        <span className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight">
+                          {ultime?.length || 0}
+                        </span>
+                        <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
+                      </div>
+
+                      <div className="space-y-3">
+                        <Link to="/delibere?tariffario=true">
+                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                              <TrendingUp className="w-5 h-5 text-primary" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-foreground">Aggiornamenti Tariffari</p>
+                              <p className="text-xs text-muted-foreground">Variazioni prezzi energia e gas</p>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                          </div>
+                        </Link>
+
+                        <Link to="/delibere">
+                          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary/40 hover:bg-secondary/60 transition-colors group cursor-pointer">
+                            <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                              <FileText className="w-5 h-5 text-primary" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-foreground">Riassunti AI</p>
+                              <p className="text-xs text-muted-foreground">Analisi intelligente automatica</p>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </section>
 
