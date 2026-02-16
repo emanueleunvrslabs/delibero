@@ -151,7 +151,7 @@ const Index = () => {
 
                 <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
                   I clienti Energizzo hanno il monitoraggio delle delibere ARERA già integrato nel software. 
-                  Analisi AI, notifiche e aggiornamenti tariffari — tutto in un'unica piattaforma.
+                  Analisi AI, notifiche e aggiornamenti tariffari, tutto in un'unica piattaforma.
                 </p>
 
                 <motion.a
