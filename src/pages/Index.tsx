@@ -97,7 +97,7 @@ const Index = () => {
                         <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
                       </div>
 
-                      <div className="space-y-3 mt-2">
+                      <div className="space-y-4 mt-3">
                         <Link to="/delibere?tariffario=true">
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
