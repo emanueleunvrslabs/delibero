@@ -3,12 +3,44 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+const ALLOWED_DOMAINS = ['www.arera.it', 'arera.it'];
+
+function validateAreraUrl(url: string): string {
+  let formattedUrl = url.trim();
+  if (formattedUrl.length > 2000) {
+    throw new Error('URL too long');
+  }
+  if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
+    formattedUrl = `https://${formattedUrl}`;
+  }
+  const parsed = new URL(formattedUrl);
+  if (!ALLOWED_DOMAINS.includes(parsed.hostname)) {
+    throw new Error('Only ARERA URLs are allowed');
+  }
+  return formattedUrl;
+}
+
+function verifyServiceAuth(req: Request): boolean {
+  const authHeader = req.headers.get('Authorization');
+  if (!authHeader?.startsWith('Bearer ')) return false;
+  const token = authHeader.replace('Bearer ', '');
+  const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  return token === serviceKey;
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    if (!verifyServiceAuth(req)) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const { url } = await req.json();
 
     if (!url) {
@@ -26,9 +58,14 @@ Deno.serve(async (req) => {
       );
     }
 
-    let formattedUrl = url.trim();
-    if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
-      formattedUrl = `https://${formattedUrl}`;
+    let formattedUrl: string;
+    try {
+      formattedUrl = validateAreraUrl(url);
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ success: false, error: e instanceof Error ? e.message : 'Invalid URL' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     console.log('Scraping delibera URL:', formattedUrl);
