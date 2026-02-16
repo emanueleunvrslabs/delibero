@@ -75,7 +75,7 @@ Deno.serve(async (req) => {
       .from('delibere')
       .upsert({
         numero: analysis.numero,
-        data_pubblicazione: new Date().toISOString().split('T')[0],
+        data_pubblicazione: analysis.data_pubblicazione || new Date().toISOString().split('T')[0],
         titolo: analysis.titolo || scrapeData.data.title,
         riassunto_ai: analysis.riassunto,
         punti_salienti: analysis.punti_salienti,
