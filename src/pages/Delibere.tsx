@@ -49,13 +49,6 @@ const Delibere = () => {
         
         <main className="flex-1 pt-28 md:pt-36 pb-16">
           <div className="container mx-auto px-4">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-2xl md:text-4xl font-extrabold text-foreground mb-6"
-            >
-              {soloTariffari ? "Aggiornamenti Tariffari" : "Tutte le Delibere"}
-            </motion.h1>
 
             <div className="mb-6">
               <DeliberaFilters
