@@ -39,14 +39,14 @@ export const DeliberaFilters = ({
         {/* Settore pills + Tariffe toggle */}
         <div className="flex gap-2 flex-wrap">
           {[
-            { value: "", label: "Tutti", icon: <Filter className="w-3 h-3" /> },
+            { value: "", label: "Tutti", icon: <Filter className="w-3 h-3" />, hideOnMobile: true },
             { value: "elettricita", label: "Elettricità", icon: <Zap className="w-3 h-3" /> },
             { value: "gas", label: "Gas", icon: <Flame className="w-3 h-3" /> },
           ].map((opt) => (
             <button
               key={opt.value}
               onClick={() => onSettoreChange(opt.value)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+              className={`${opt.hideOnMobile ? 'hidden md:inline-flex' : 'inline-flex'} items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                 settore === opt.value
                   ? "bg-primary/20 text-primary border border-primary/30"
                   : "bg-secondary/50 text-muted-foreground border border-border hover:text-foreground"
