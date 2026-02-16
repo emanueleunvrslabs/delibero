@@ -1,0 +1,1 @@
+ALTER TABLE public.delibere ADD CONSTRAINT delibere_numero_unique UNIQUE (numero);
