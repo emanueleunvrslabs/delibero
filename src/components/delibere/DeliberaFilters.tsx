@@ -36,6 +36,7 @@ export const DeliberaFilters = ({
         </div>
 
         {/* Settore pills */}
+        {/* Settore pills + Tariffe toggle */}
         <div className="flex gap-2 flex-wrap">
           {[
             { value: "", label: "Tutti", icon: <Filter className="w-3 h-3" /> },
@@ -55,20 +56,19 @@ export const DeliberaFilters = ({
               {opt.label}
             </button>
           ))}
-        </div>
 
-        {/* Tariffario toggle */}
-        <button
-          onClick={() => onSoloTariffariChange(!soloTariffari)}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-            soloTariffari
-              ? "bg-primary/20 text-primary border border-primary/30"
-              : "bg-secondary/50 text-muted-foreground border border-border hover:text-foreground"
-          }`}
-        >
-          <TrendingUp className="w-3 h-3" />
-          Tariffe
-        </button>
+          <button
+            onClick={() => onSoloTariffariChange(!soloTariffari)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+              soloTariffari
+                ? "bg-primary/20 text-primary border border-primary/30"
+                : "bg-secondary/50 text-muted-foreground border border-border hover:text-foreground"
+            }`}
+          >
+            <TrendingUp className="w-3 h-3" />
+            Tariffe
+          </button>
+        </div>
       </div>
     </motion.div>
   );
