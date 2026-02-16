@@ -97,9 +97,9 @@ const Index = () => {
                         <p className="text-sm text-muted-foreground mt-1">Delibere analizzate</p>
                       </div>
 
-                      <div className="space-y-2.5">
+                      <div className="space-y-3 mt-2">
                         <Link to="/delibere?tariffario=true">
-                          <div className="flex items-center gap-3 p-3 rounded-xl liquid-glass hover:bg-secondary/60 transition-colors group cursor-pointer">
+                          <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                               <TrendingUp className="w-4 h-4 text-primary" />
                             </div>
@@ -112,7 +112,7 @@ const Index = () => {
                         </Link>
 
                         <Link to="/delibere">
-                          <div className="flex items-center gap-3 p-3 rounded-xl liquid-glass hover:bg-secondary/60 transition-colors group cursor-pointer">
+                          <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                               <FileText className="w-4 h-4 text-primary" />
                             </div>
