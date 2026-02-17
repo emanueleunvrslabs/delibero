@@ -32,6 +32,18 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Verify service role authentication
+    const authHeader = req.headers.get("Authorization");
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (
+      !authHeader?.startsWith("Bearer ") ||
+      authHeader.replace("Bearer ", "") !== serviceKey
+    ) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
     const LINKEDIN_CLIENT_ID = Deno.env.get("LINKEDIN_CLIENT_ID");
     if (!LINKEDIN_CLIENT_ID) throw new Error("LINKEDIN_CLIENT_ID not configured");
 

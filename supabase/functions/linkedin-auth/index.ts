@@ -25,6 +25,18 @@ Deno.serve(async (req) => {
 
     // If "action=authorize" → return the LinkedIn authorization URL
     if (url.searchParams.get("action") === "authorize") {
+      // Verify service role authentication for authorize action
+      const authHeader = req.headers.get("Authorization");
+      const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (
+        !authHeader?.startsWith("Bearer ") ||
+        authHeader.replace("Bearer ", "") !== serviceKey
+      ) {
+        return new Response(
+          JSON.stringify({ error: "Unauthorized" }),
+          { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
       const redirectUri = `${SUPABASE_URL}/functions/v1/linkedin-auth`;
       const scope = "w_organization_social openid profile";
       const state = crypto.randomUUID();
