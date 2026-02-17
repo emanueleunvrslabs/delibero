@@ -9,6 +9,8 @@ export const Footer = () => {
           <span className="text-white/10">|</span>
           <span>© {new Date().getFullYear()} UNVRS Labs Limited</span>
           <span className="text-white/10">|</span>
+          <a href="/privacy-policy" className="hover:underline hover:text-foreground transition-colors">Privacy Policy</a>
+          <span className="text-white/10">|</span>
           <span className="text-muted-foreground/60">Non affiliato ad ARERA</span>
         </div>
       </div>
