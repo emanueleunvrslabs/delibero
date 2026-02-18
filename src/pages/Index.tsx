@@ -1,5 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { organizationSchema, websiteSchema, faqSchema } from "@/components/seo/schemas";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight, Flame } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,6 +33,10 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        canonical="/"
+        jsonLd={[organizationSchema, websiteSchema, faqSchema]}
+      />
       <div className="fixed inset-0 mesh-gradient" />
       <div className="fixed inset-0 aurora-bg pointer-events-none" />
       <div className="grain-overlay" />

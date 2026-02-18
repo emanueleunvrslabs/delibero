@@ -1,0 +1,44 @@
+# Delibero — Delibere ARERA analizzate con AI
+
+> Delibero è un servizio che monitora e analizza con intelligenza artificiale le delibere pubblicate dall'Autorità di Regolazione per Energia Reti e Ambiente (ARERA). Offre riassunti automatici, punti salienti e identificazione degli aggiornamenti tariffari per operatori del settore energia e gas in Italia.
+
+## Informazioni Principali
+
+- **URL**: https://delibero.lovable.app
+- **Settore**: Energia, Gas, Regolazione, ARERA
+- **Lingua**: Italiano
+- **Offerto da**: Energizzo by UNVRS Labs Limited
+- **Sito correlato**: https://www.energizzo.it
+
+## Funzionalità
+
+- Monitoraggio automatico delle delibere ARERA
+- Analisi AI con riassunti e punti salienti
+- Filtri per settore: Elettricità, Gas
+- Identificazione aggiornamenti tariffari
+- Consultazione rapida delle delibere più rilevanti
+
+## Pagine Principali
+
+- [Homepage](https://delibero.lovable.app/): Panoramica del servizio e statistiche
+- [Delibere](https://delibero.lovable.app/delibere): Elenco completo delle delibere analizzate
+- [Delibere Elettricità](https://delibero.lovable.app/delibere?settore=elettricita): Delibere settore elettricità
+- [Delibere Gas](https://delibero.lovable.app/delibere?settore=gas): Delibere settore gas
+- [Aggiornamenti Tariffari](https://delibero.lovable.app/delibere?tariffario=true): Delibere con impatto tariffario
+
+## FAQ
+
+### Cos'è Delibero?
+Delibero è un servizio che monitora le delibere ARERA e le analizza con intelligenza artificiale, fornendo riassunti, punti salienti e aggiornamenti tariffari per operatori del settore energia e gas.
+
+### Quali delibere vengono monitorate?
+Tutte le delibere ARERA relative ai settori elettricità e gas, con particolare attenzione agli aggiornamenti tariffari.
+
+### Come funziona l'analisi AI?
+Ogni delibera viene processata da algoritmi AI che estraggono un riassunto, i punti salienti e identificano se si tratta di un aggiornamento tariffario.
+
+### Chi offre Delibero?
+Delibero è un servizio di Energizzo by UNVRS Labs Limited. I clienti Energizzo hanno il monitoraggio già integrato.
+
+### Delibero è affiliato ad ARERA?
+No. Il servizio raccoglie e analizza in modo indipendente le delibere pubblicate pubblicamente.

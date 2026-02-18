@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
+import { SEOHead } from "@/components/seo/SEOHead";
 import { DeliberaCard } from "@/components/delibere/DeliberaCard";
 import { DeliberaFilters } from "@/components/delibere/DeliberaFilters";
 import { supabase } from "@/integrations/supabase/client";
@@ -40,6 +41,11 @@ const Delibere = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        title="Delibere ARERA — Elenco completo"
+        description="Consulta tutte le delibere ARERA analizzate con intelligenza artificiale. Filtra per settore elettricità, gas o aggiornamenti tariffari."
+        canonical="/delibere"
+      />
       <div className="fixed inset-0 mesh-gradient" />
       <div className="fixed inset-0 aurora-bg pointer-events-none" />
       <div className="grain-overlay" />
