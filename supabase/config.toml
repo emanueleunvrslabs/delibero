@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.publish-linkedin]
 verify_jwt = false
+
+[functions.whatsapp-otp]
+verify_jwt = false
