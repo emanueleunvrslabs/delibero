@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { deliberaArticleSchema } from "@/components/seo/schemas";
 import { DeliberaContent } from "@/components/delibere/DeliberaContent";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
@@ -23,6 +25,15 @@ const DeliberaDetail = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
+      {delibera && (
+        <SEOHead
+          title={`Delibera ${delibera.numero} — ${delibera.titolo}`}
+          description={delibera.riassunto_ai?.slice(0, 155) ?? `Analisi AI della delibera ARERA ${delibera.numero}: ${delibera.titolo}`}
+          canonical={`/delibere/${delibera.id}`}
+          ogType="article"
+          jsonLd={deliberaArticleSchema(delibera as any)}
+        />
+      )}
       <div className="fixed inset-0 mesh-gradient" />
       <div className="fixed inset-0 aurora-bg pointer-events-none" />
       <div className="grain-overlay" />

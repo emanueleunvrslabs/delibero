@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Delibero",
+  "name_for_model": "delibero_arera",
+  "description_for_human": "Delibere ARERA analizzate con intelligenza artificiale. Riassunti, punti salienti e aggiornamenti tariffari per operatori energia e gas.",
+  "description_for_model": "Delibero monitora e analizza con AI le delibere dell'Autorità di Regolazione per Energia Reti e Ambiente (ARERA) in Italia. Fornisce riassunti automatici, punti salienti e identificazione degli aggiornamenti tariffari per i settori elettricità e gas. È un servizio offerto da Energizzo by UNVRS Labs Limited.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://delibero.lovable.app/llms.txt"
+  },
+  "logo_url": "https://delibero.lovable.app/og-image.jpeg",
+  "contact_email": "privacy@unvrslabs.dev",
+  "legal_info_url": "https://delibero.lovable.app/privacy-policy"
+}
