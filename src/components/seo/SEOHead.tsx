@@ -14,7 +14,7 @@ const BASE_URL = "https://delibero.lovable.app";
 const DEFAULT_TITLE = "Delibero — Delibere ARERA analizzate con AI";
 const DEFAULT_DESCRIPTION =
   "Monitoriamo le delibere ARERA e le analizziamo con intelligenza artificiale. Riassunti, punti salienti e aggiornamenti tariffari per operatori energia.";
-const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpeg`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/logo.png`;
 
 export const SEOHead = ({
   title,
