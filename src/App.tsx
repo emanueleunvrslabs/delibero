@@ -8,6 +8,7 @@ import Delibere from "./pages/Delibere";
 import DeliberaDetail from "./pages/DeliberaDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
+import { RequireWhatsApp } from "./components/auth/RequireWhatsApp";
 
 const queryClient = new QueryClient();
 
@@ -19,8 +20,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/delibere" element={<Delibere />} />
-          <Route path="/delibere/:id" element={<DeliberaDetail />} />
+          <Route path="/delibere" element={<RequireWhatsApp><Delibere /></RequireWhatsApp>} />
+          <Route path="/delibere/:id" element={<RequireWhatsApp><DeliberaDetail /></RequireWhatsApp>} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

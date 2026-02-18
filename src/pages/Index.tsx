@@ -2,11 +2,16 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Shield, Brain, TrendingUp, FileText, ChevronRight, Flame } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import { useWhatsAppAuth } from "@/hooks/useWhatsAppAuth";
+import { WhatsAppVerifyDialog } from "@/components/auth/WhatsAppVerifyDialog";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { showDialog, pendingNavigate, requireAuth, onVerified, closeDialog } = useWhatsAppAuth();
+
   const { data: totalCount } = useQuery({
     queryKey: ["delibere-count"],
     queryFn: async () => {
@@ -16,6 +21,13 @@ const Index = () => {
       return count ?? 0;
     },
   });
+
+  const handleDelibereClick = (e: React.MouseEvent, path: string) => {
+    const blocked = requireAuth(path);
+    if (blocked) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
@@ -50,7 +62,11 @@ const Index = () => {
 
                   <div className="flex gap-3 flex-wrap mb-8">
                     <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.98 }}>
-                      <Link to="/delibere" className="btn-premium inline-flex items-center gap-2">
+                      <Link
+                        to="/delibere"
+                        onClick={(e) => handleDelibereClick(e, "/delibere")}
+                        className="btn-premium inline-flex items-center gap-2"
+                      >
                         Esplora Delibere <ArrowRight className="w-5 h-5" />
                       </Link>
                     </motion.div>
@@ -96,7 +112,7 @@ const Index = () => {
                       </div>
 
                       <div className="flex flex-col gap-3 mt-3">
-                        <Link to="/delibere?settore=elettricita">
+                        <Link to="/delibere?settore=elettricita" onClick={(e) => handleDelibereClick(e, "/delibere?settore=elettricita")}>
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                               <Zap className="w-4 h-4 text-primary" />
@@ -109,7 +125,7 @@ const Index = () => {
                           </div>
                         </Link>
 
-                        <Link to="/delibere?settore=gas">
+                        <Link to="/delibere?settore=gas" onClick={(e) => handleDelibereClick(e, "/delibere?settore=gas")}>
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                               <Flame className="w-4 h-4 text-primary" />
@@ -122,7 +138,7 @@ const Index = () => {
                           </div>
                         </Link>
 
-                        <Link to="/delibere?tariffario=true">
+                        <Link to="/delibere?tariffario=true" onClick={(e) => handleDelibereClick(e, "/delibere?tariffario=true")}>
                           <div className="flex items-center gap-3 p-3.5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors group cursor-pointer">
                             <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
                               <TrendingUp className="w-4 h-4 text-primary" />
@@ -184,6 +200,13 @@ const Index = () => {
         
         <Footer />
       </div>
+
+      <WhatsAppVerifyDialog
+        open={showDialog}
+        onClose={closeDialog}
+        onVerified={onVerified}
+        pendingNavigate={pendingNavigate}
+      />
     </div>
   );
 };

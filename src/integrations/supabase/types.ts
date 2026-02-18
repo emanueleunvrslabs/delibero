@@ -92,6 +92,36 @@ export type Database = {
         }
         Relationships: []
       }
+      whatsapp_verified_users: {
+        Row: {
+          created_at: string
+          id: string
+          is_verified: boolean
+          otp_code: string | null
+          otp_expires_at: string | null
+          phone_number: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_verified?: boolean
+          otp_code?: string | null
+          otp_expires_at?: string | null
+          phone_number: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_verified?: boolean
+          otp_code?: string | null
+          otp_expires_at?: string | null
+          phone_number?: string
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
