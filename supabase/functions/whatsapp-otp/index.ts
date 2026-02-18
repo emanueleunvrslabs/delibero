@@ -13,6 +13,14 @@ function isValidE164(phone: string): boolean {
   return /^\+[1-9]\d{6,14}$/.test(phone);
 }
 
+async function hashOTP(otp: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(otp);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -59,12 +67,14 @@ Deno.serve(async (req) => {
       const otp = generateOTP();
       const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // 10 min
 
-      // Upsert OTP
+      const hashedOtp = await hashOTP(otp);
+
+      // Upsert hashed OTP
       const { error: upsertError } = await supabase
         .from('whatsapp_verified_users')
         .upsert({
           phone_number,
-          otp_code: otp,
+          otp_code: hashedOtp,
           otp_expires_at: expiresAt,
           is_verified: false,
         }, { onConflict: 'phone_number' });
@@ -140,7 +150,8 @@ Deno.serve(async (req) => {
         );
       }
 
-      if (user.otp_code !== otp_code) {
+      const hashedInputOtp = await hashOTP(otp_code);
+      if (user.otp_code !== hashedInputOtp) {
         return new Response(
           JSON.stringify({ success: false, error: 'Codice errato' }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
