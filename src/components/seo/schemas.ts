@@ -5,7 +5,7 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "Delibero",
   url: BASE_URL,
-  logo: `${BASE_URL}/og-image.jpeg`,
+  logo: `${BASE_URL}/logo.png`,
   description:
     "Monitoriamo le delibere ARERA e le analizziamo con intelligenza artificiale.",
   parentOrganization: {
